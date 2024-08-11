@@ -1,0 +1,129 @@
+<%-include('header.ejs')%>
+
+ 
+<!-- UPDATE_Modal -->
+<div class="modal fade" id="updateGroupchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="update-Groupchat-form">
+        <div class="modal-body">
+          <input type="hidden"  id="edit-group-message-id">
+          <input type="text" name="message" id="edit-group-message" required>
+          <pre>Do You Want To Update!!</pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary dlt-btn">Update!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>      
+
+
+
+
+
+          
+<!--Delete-Groupchat-Modal-->
+<div class="modal fade" id="deleteGroupchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete-Chat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="delete-group-chat-form">
+      <div class="modal-body">
+       <input  type="hidden" name="id" id="delete-group-message-id">
+        <pre>Do You Want To Delete!!</pre>
+         <h5><b id="delete-group-message"></b></h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary dlt-btn">Delete!</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  
+<h1 class="mb-4">Group_Chatting</h1>
+<div class="row">
+  <div class="col-md-4"> 
+<ul class="list-group">
+  <%
+    if(myGroups.length>0){
+        for(let i=0; i<myGroups.length; i++){
+            %>
+            <li class="list-group-item list-group-item-dark cursor-pointer group-list" data_id="<%=myGroups[i]['_id']%>">
+               <img src="/<%= myGroups[i]['image']%>" alt="100px" width="100px">
+                <%=myGroups[i]['name']%>
+            </li>
+            <%   
+        }
+    }
+    %>
+
+    <%
+    if(joinGroups.length>0){
+        for(let i=0; i<joinGroups.length; i++){
+            %>
+            <li class="list-group-item list-group-item-dark cursor-pointer group-list" data_id="<%=joinGroups[i]['group_id']['_id']%>">
+               <img src="/<%= joinGroups[i]['group_id']['image']%>" alt="photo" width="100px">
+                <%=joinGroups[i]['group_id']['name']%>
+            </li>
+            <%   
+        }
+    }
+    %>
+    
+    
+
+   
+   </ul>
+
+   </div>
+   <div class="col-md-7">
+    <h3 class="group-start-head">Start-Chat</h3>
+    <div class="group-chat-section">
+    <div id="group-chat-container">
+          
+
+
+    </div>
+    <form method="post" id="group-chat-form">
+    <input type="text" name="message" placeholder="Enter message" id="group-message" required>
+    <input type="submit" value="Send" class="btn btn-primary">
+    </form>
+   </div>
+   </div>
+ 
+  
+
+
+
+ 
+
+<!--Container Main end--->
+
+
+
+<%- include('footer.ejs') %>
+
